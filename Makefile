@@ -3,3 +3,6 @@ build:
 
 run: build
 	./bin/duration ./script.sh
+
+clean:
+	rm ./bin/duration
