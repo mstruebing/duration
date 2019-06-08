@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+// Pads an integer with zeroes to the left
+// i.e 01
 func padTimePart(timePart int) string {
 	return fmt.Sprintf("%02d", timePart)
 }
@@ -27,6 +29,7 @@ func getHours(time time.Duration) string {
 	return padTimePart(hours)
 }
 
+// Prints the duration how long a command is already running
 func printDuration() {
 	fmt.Printf("command running since: %s:%s:%s", getHours(0), getMinutes(0), getSeconds(0))
 	start := time.Now()
@@ -44,6 +47,11 @@ func printCmdOutput(output string) {
 }
 
 func main() {
+	if len(os.Args) < 2 {
+		fmt.Fprintln(os.Stderr, "ERROR: You need to provide a command to execute")
+		os.Exit(1)
+	}
+
 	program := strings.Join(os.Args[1:2], "")
 	args := strings.Join(os.Args[2:], " ")
 
