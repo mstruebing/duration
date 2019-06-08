@@ -4,5 +4,8 @@ build:
 run: build
 	./bin/duration ./script.sh
 
+test: 
+	cd ./cmd/duration/ && go test -cover
+
 clean:
 	rm ./bin/duration
