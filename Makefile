@@ -1,11 +1,15 @@
+GO_ENVS = GO111MODULE=on CGO_ENABLED=0
+
+default: build
+	
 build:
-	GO111MODULE=on CGO_ENABLED=0 go build -o ./bin/duration cmd/duration/duration.go
+	 $(GO_ENVS) go build -o ./bin/duration cmd/duration/duration.go
 
 run: build
 	./bin/duration ./script.sh
 
 test: 
-	cd ./cmd/duration/ && go test -cover
+	go test -cover ./...
 
 clean:
 	rm ./bin/duration
