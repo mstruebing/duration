@@ -1,6 +1,7 @@
 # Duration
 
 [![CircleCI](https://circleci.com/gh/mstruebing/duration.svg?style=svg)](https://circleci.com/gh/mstruebing/duration)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mstruebing/duration)](https://goreportcard.com/report/github.com/mstruebing/duration)
 
 ## Why?
 
