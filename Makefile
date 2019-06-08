@@ -1,12 +1,12 @@
-GO_ENVS = GO111MODULE=on CGO_ENABLED=0
+GO_FLAGS = GO111MODULE=on CGO_ENABLED=0
 
 default: build
 	
 build:
-	 $(GO_ENVS) go build -o ./bin/duration cmd/duration/duration.go
+	 $(GO_FLAGS) go build -o ./bin/duration ./...
 
 run: build
-	./bin/duration ./script.sh
+	./bin/duration ./test-script/script.sh
 
 test: 
 	go test -cover ./...
