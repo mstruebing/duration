@@ -74,7 +74,7 @@ func printDurationAndOutput(output *bytes.Buffer) {
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Fprintln(os.Stderr, "ERROR: You need to provide a command to execute")
+		fmt.Fprintln(os.Stderr, "ERROR: You need to provide a command to execute.")
 		os.Exit(1)
 	}
 
@@ -92,7 +92,9 @@ func main() {
 
 	err := cmd.Run()
 	if err != nil {
-		panic(err)
+		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintf(os.Stderr, "\nERROR: Please try to put your command into a script and execute that.\n")
+		os.Exit(1)
 	}
 
 	time.Sleep(time.Second)
