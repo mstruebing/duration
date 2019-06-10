@@ -8,7 +8,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - go-mod-v4-{{ checksum "go.mod" }}
+            - go-mod-v4-{{ checksum "go.sum" }}
       - run:
           name: Run unit tests
           command: |
@@ -19,7 +19,7 @@ jobs:
       - run: make run
 
       - save_cache:
-          key: go-mod-v4-{{ checksum "go.mod" }}
+          key: go-mod-v4-{{ checksum "go.sum" }}
           paths:
             - "/go/pkg/mod"
 
