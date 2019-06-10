@@ -42,6 +42,7 @@ func printDuration(start time.Time) {
 
 	tm.MoveCursor(tm.Width()-30, tm.Height())
 	tm.Printf("command running since: %s:%s:%s", getHours(currentTime), getMinutes(currentTime), getSeconds(currentTime))
+	tm.MoveCursor(0, tm.Height())
 	tm.Flush()
 }
 
