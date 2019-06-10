@@ -16,7 +16,7 @@ test:
 	go test -cover ./...
 
 clean:
-	rm ./bin/duration
+	rm -f ./bin/duration
 
 release: _is_master_branch _git_branch_is_up_to_date current_version _tag_version _do_release
 	@echo Release done. Go to Github and create a release.
