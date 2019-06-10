@@ -43,7 +43,7 @@ _do_release: clean test build run _build-all-binaries _compress-all-binaries
 
 _tag_version:
 	@read -p "Enter version to release: " version && \
-	sed -i "s/const VERSION string = \".*\"/const version string = \"$${version}\"/" ./cmd/duration/duration.go && \
+	sed -i "s/const VERSION string = \".*\"/const VERSION string = \"$${version}\"/" ./cmd/duration/duration.go && \
 	git add . && git commit -m "chore(release): $${version}" && git tag "$${version}" && \
 	git push origin master && git push origin master --tags
 
