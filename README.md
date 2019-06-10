@@ -68,6 +68,7 @@ You can also grab a release from the [release page](https://github.com/mstruebin
 ### Via AUR
 
 If you use Arch-Linux you can simply install the `duration-git`-package.
+[AUR-link](https://aur.archlinux.org/packages/duration-git/)
 
 i.e:
 
