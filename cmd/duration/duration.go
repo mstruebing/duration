@@ -49,7 +49,8 @@ func printDuration(start time.Time) {
 }
 
 func printDurationAndOutput(output *bytes.Buffer) {
-	ticker := time.NewTicker(time.Nanosecond)
+	// Prints every 250 milliseconds
+	ticker := time.NewTicker(time.Millisecond * 250)
 
 	outputAccumulator := ""
 	outputPrint := ""
