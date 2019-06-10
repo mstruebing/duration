@@ -1,4 +1,5 @@
 GO_FLAGS = GO111MODULE=on CGO_ENABLED=0
+COMPILE_COMMAND = go build -o ./bin/duration ./...
 
 CURRENT_VERSION = $(shell grep 'const VERSION string' cmd/duration/duration.go | sed 's/.*"\(.*\)"/\1/')
 GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
@@ -7,7 +8,7 @@ GIT_BRANCH_UP_TO_DATE = $(shell git remote show origin | tail -n1 | sed 's/.*(\(
 default: build
 	
 build:
-	 $(GO_FLAGS) go build -o ./bin/duration ./...
+	 $(GO_FLAGS) $(COMPILE_COMMAND)
 
 run: build
 	./bin/duration ./test-script/script.sh
