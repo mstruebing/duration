@@ -11,7 +11,7 @@ import (
 	tm "github.com/buger/goterm"
 )
 
-const VERSION string = "0.0.1"
+const VERSION string = "1.0.0"
 
 // Pads an integer with zeroes to the left
 // i.e 01
