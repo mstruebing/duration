@@ -11,6 +11,8 @@ import (
 	tm "github.com/buger/goterm"
 )
 
+const VERSION string = "0.0.1"
+
 // Pads an integer with zeroes to the left
 // i.e 01
 func padTimePart(timePart int) string {
@@ -72,14 +74,44 @@ func printDurationAndOutput(output *bytes.Buffer) {
 	}
 }
 
+func printVersion() {
+	fmt.Printf("duration v%s\n", VERSION)
+}
+
+func printHelp() {
+	fmt.Println("USAGE: duration [h|help|v|version|<command>]")
+	fmt.Println("where")
+	fmt.Println("\t[v|version] - prints the version")
+	fmt.Println("\t[h|help] - prints the help")
+	fmt.Println("\t<command> - a SINGLE command or script to execute")
+	fmt.Println("")
+	fmt.Println("would work:")
+	fmt.Println("\tduration sleep 5")
+	fmt.Println("\tduration script.sh")
+	fmt.Println("would NOT work:")
+	fmt.Println("\tduration sleep 5 && sleep 4 (use ie a bash script instead)")
+}
+
 func main() {
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "ERROR: You need to provide a command to execute.")
+		printHelp()
 		os.Exit(1)
 	}
 
 	program := strings.Join(os.Args[1:2], "")
 	args := strings.Join(os.Args[2:], " ")
+	maybeFlag := strings.Trim(program, "-")
+
+	if maybeFlag == "version" || maybeFlag == "v" {
+		printVersion()
+		os.Exit(0)
+	}
+
+	if maybeFlag == "help" || maybeFlag == "h" {
+		printHelp()
+		os.Exit(0)
+	}
 
 	cmd := exec.Command(program, args)
 
