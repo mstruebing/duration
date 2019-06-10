@@ -1,6 +1,8 @@
 GO_FLAGS = GO111MODULE=on CGO_ENABLED=0
 
 CURRENT_VERSION = $(shell grep 'const VERSION string' cmd/duration/duration.go | sed 's/.*"\(.*\)"/\1/')
+GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
+GIT_BRANCH_UP_TO_DATE = $(shell git remote show origin | tail -n1 | sed 's/.*(\(.*\))/\1/')
 
 default: build
 	
