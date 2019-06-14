@@ -93,6 +93,21 @@ func printHelp() {
 	fmt.Println("\tduration sleep 5 && sleep 4 (use ie a bash script instead)")
 }
 
+func isFlag(short string, long string) func(string) bool {
+	return func(maybeFlag string) bool {
+		trimmedFlag := strings.Trim(maybeFlag, "-")
+		return trimmedFlag == short || trimmedFlag == long
+	}
+}
+
+func isHelpFlag(input string) bool {
+	return isFlag("h", "help")(input)
+}
+
+func isVersionFlag(input string) bool {
+	return isFlag("v", "version")(input)
+}
+
 func main() {
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "ERROR: You need to provide a command to execute.")
@@ -100,21 +115,20 @@ func main() {
 		os.Exit(1)
 	}
 
-	program := strings.Join(os.Args[1:2], "")
+	programOrFlag := strings.Join(os.Args[1:2], "")
 	args := strings.Join(os.Args[2:], " ")
-	maybeFlag := strings.Trim(program, "-")
 
-	if maybeFlag == "version" || maybeFlag == "v" {
+	if isVersionFlag(programOrFlag) {
 		printVersion()
 		os.Exit(0)
 	}
 
-	if maybeFlag == "help" || maybeFlag == "h" {
+	if isHelpFlag(programOrFlag) {
 		printHelp()
 		os.Exit(0)
 	}
 
-	cmd := exec.Command(program, args)
+	cmd := exec.Command(programOrFlag, args)
 
 	var output bytes.Buffer
 
