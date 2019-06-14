@@ -6,74 +6,161 @@ import (
 )
 
 func TestPadTimePart(t *testing.T) {
-	result := padTimePart(20)
-
-	if result != "20" {
-		t.Errorf("Should not pad if value has two things, got: %v", result)
+	padTimePartTests := []struct {
+		input    int
+		expected string
+	}{
+		{20, "20"},
+		{2, "02"},
 	}
 
-	result = padTimePart(2)
-	if result != "02" {
-		t.Errorf("Should pad if value has one thing, got: %v", result)
+	for _, tt := range padTimePartTests {
+		actual := padTimePart(tt.input)
+
+		if actual != tt.expected {
+			t.Errorf("padTimePart(%d): expected: %v, got: %v", tt.input, tt.expected, actual)
+		}
 	}
 }
 
 func TestGetSeconds(t *testing.T) {
-	result := getSeconds(time.Nanosecond)
-
-	if result != "00" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
+	getSecondsTest := []struct {
+		input    time.Duration
+		expected string
+	}{
+		{time.Nanosecond, "00"},
+		{time.Second * 5, "05"},
+		{time.Second * 65, "05"},
 	}
 
-	result = getSeconds(time.Second * 5)
+	for _, tt := range getSecondsTest {
+		actual := getSeconds(tt.input)
 
-	if result != "05" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
-	}
-
-	result = getSeconds(time.Second * 65)
-
-	if result != "05" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
+		if actual != tt.expected {
+			t.Errorf("getSeconds(%d): expected: %v, got: %v", tt.input, tt.expected, actual)
+		}
 	}
 }
 
 func TestGetMinutes(t *testing.T) {
-	result := getMinutes(time.Nanosecond)
-
-	if result != "00" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
+	getMinutesTest := []struct {
+		input    time.Duration
+		expected string
+	}{
+		{time.Nanosecond, "00"},
+		{time.Minute * 5, "05"},
+		{time.Minute * 65, "05"},
 	}
 
-	result = getMinutes(time.Minute * 5)
+	for _, tt := range getMinutesTest {
+		actual := getMinutes(tt.input)
 
-	if result != "05" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
-	}
-
-	result = getMinutes(time.Minute * 65)
-
-	if result != "05" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
+		if actual != tt.expected {
+			t.Errorf("getMinutes(%d): expected: %v, got: %v", tt.input, tt.expected, actual)
+		}
 	}
 }
 
 func TestGetHours(t *testing.T) {
-	result := getHours(time.Nanosecond)
-
-	if result != "00" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
+	getHoursTest := []struct {
+		input    time.Duration
+		expected string
+	}{
+		{time.Nanosecond, "00"},
+		{time.Hour * 5, "05"},
+		{time.Hour * 25, "25"},
 	}
 
-	result = getHours(time.Hour * 5)
+	for _, tt := range getHoursTest {
+		actual := getHours(tt.input)
 
-	if result != "05" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
+		if actual != tt.expected {
+			t.Errorf("getHours(%d): expected: %v, got: %v", tt.input, tt.expected, actual)
+		}
+	}
+}
+
+func TestIsFlag(t *testing.T) {
+	isMyFlag := isFlag("f", "foo")
+
+	isFlagTest := []struct {
+		input    string
+		expected bool
+	}{
+		{"f", true},
+		{"-f", true},
+		{"--f", true},
+		{"foo", true},
+		{"-foo", true},
+		{"--foo", true},
+		{"fo", false},
+		{"-fo", false},
+		{"--fo", false},
+		{"abc", false},
+		{"--abc", false},
 	}
 
-	result = getHours(time.Hour * 25)
+	for _, tt := range isFlagTest {
+		actual := isMyFlag(tt.input)
 
-	if result != "25" {
-		t.Errorf("Should correctly calculate seconds, got: %v", result)
+		if actual != tt.expected {
+			t.Errorf("isMyFlag(%s): expected: %v, got: %v", tt.input, tt.expected, actual)
+		}
+	}
+}
+
+func TestIsHelpFlag(t *testing.T) {
+	isHelpFlagTest := []struct {
+		input    string
+		expected bool
+	}{
+		{"h", true},
+		{"help", true},
+		{"-h", true},
+		{"-help", true},
+		{"--h", true},
+		{"--help", true},
+		{"f", false},
+		{"foo", false},
+		{"-f", false},
+		{"-foo", false},
+		{"--f", false},
+		{"--foo", false},
+	}
+
+	for _, tt := range isHelpFlagTest {
+		actual := isHelpFlag(tt.input)
+
+		if actual != tt.expected {
+			t.Errorf("isHelpFlag(%s): expected: %v, got: %v", tt.input, tt.expected, actual)
+		}
+	}
+}
+
+func TestIsVersionFlag(t *testing.T) {
+	isVersionFlagTest := []struct {
+		input    string
+		expected bool
+	}{
+		{"v", true},
+		{"version", true},
+		{"-v", true},
+		{"-version", true},
+		{"--v", true},
+		{"--version", true},
+		{"f", false},
+		{"foo", false},
+		{"-f", false},
+		{"-foo", false},
+		{"--f", false},
+		{"--foo", false},
+	}
+
+	for _, tt := range isVersionFlagTest {
+		actual := isVersionFlag(tt.input)
+
+		if actual != tt.expected {
+			t.Errorf("isVersionFlag(%s): expected: %v, got: %v", tt.input, tt.expected, actual)
+		}
 	}
 }
