@@ -1,6 +1,6 @@
 module github.com/mstruebing/duration
 
-go 1.12
+go 1.20
 
 require (
 	github.com/buger/goterm v0.0.0-20181115115552-c206103e1f37
