@@ -1,6 +1,6 @@
 # Duration
 
-[![CI](https://github.com/mstruebing/duration/actions/workflows/main.yml/badge.svg)](https://github.com/mstruebing/duration/actions/workflows/main.yml)
+[![CI](https://github.com/mstruebing/duration/actions/workflows/ci.yml/badge.svg)](https://github.com/mstruebing/duration/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mstruebing/duration)](https://goreportcard.com/report/github.com/mstruebing/duration)
 
 1. [Why](#why) 
