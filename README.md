@@ -1,6 +1,6 @@
 # Duration
 
-[![CircleCI](https://circleci.com/gh/mstruebing/duration.svg?style=svg)](https://circleci.com/gh/mstruebing/duration)
+[![CI](https://github.com/mstruebing/duration/actions/workflows/ci.yml/badge.svg)](https://github.com/mstruebing/duration/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mstruebing/duration)](https://goreportcard.com/report/github.com/mstruebing/duration)
 
 1. [Why](#why) 
@@ -32,7 +32,7 @@ would work:
         duration script.sh
 would NOT work:
         duration sleep 5 && sleep 4
-```````````
+```
 
 
 ### Important
@@ -75,3 +75,9 @@ i.e:
 ```sh 
 trizen -S duration-git 
 ```
+
+### License
+
+Duration is open source software licensed under the MIT License.
+
+See the [LICENSE](./LICENSE) file for more.
