@@ -7,8 +7,8 @@
       "export \"GOROOT=$(go env GOROOT)\""
     ],
     "scripts": {
-      "build_cli": "GO111MODULE=on CGO_ENABLED=0 go build -o ./bin/duration ./...",
-      "test": "go test -race -cover ./...",
+      "build": "GO111MODULE=on CGO_ENABLED=0 go build -o ./bin/duration ./...",
+      "test": "go test -race -cover ./..."
     }
   }
 }
