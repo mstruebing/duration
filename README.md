@@ -41,6 +41,8 @@ It's __important__ to understand that currently only a __single__  command with 
 
 ## Installation
 
+[![Open In Devbox.sh](https://jetpack.io/img/devbox/open-in-devbox.svg)](https://devbox.sh/github.com/mstruebing/duration)
+
 ### From Source
 
 In order to build from source you need `go` and `make` installed.

@@ -1,0 +1,14 @@
+{
+  "packages": [
+    "go@1.20"
+  ],
+  "shell": {
+    "init_hook": [
+      "export \"GOROOT=$(go env GOROOT)\""
+    ],
+    "scripts": {
+      "build": "GO111MODULE=on CGO_ENABLED=0 go build -o ./bin/duration ./...",
+      "test": "go test -race -cover ./..."
+    }
+  }
+}
