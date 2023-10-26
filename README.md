@@ -41,7 +41,7 @@ It's __important__ to understand that currently only a __single__  command with 
 
 ## Installation
 
-[![Built with Devbox](https://jetpack.io/img/devbox/shield_galaxy.svg)](https://github.com/KarolosLykos/duration/)
+[![Open In Devbox.sh](https://jetpack.io/img/devbox/open-in-devbox.svg)](https://devbox.sh/https://github.com/mstruebing/duration)
 
 ### From Source
 
